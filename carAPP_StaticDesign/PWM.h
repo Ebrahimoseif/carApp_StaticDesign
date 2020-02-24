@@ -15,6 +15,10 @@
 
 
 
+/*********************************/
+/*            MACROS             */
+/*********************************/
+
 
 #include "std_types.h"
 #include "registers.h"
@@ -22,17 +26,18 @@
 #include "DIO.h"
 
 
-#define CPU_FREQ		16000000
+#define   CPU_FREQ		16000000ul
 
-#define PWM_CH0  (0)
-#define PWM_CH1A (1)
-#define PWM_CH1B (2)
-#define PWM_CH2  (3)
+#define PWM_CH0			(0)
+#define PWM_CH1A		(1)
+#define PWM_CH1B		(2)
+#define PWM_CH2			(3)
 
-#define PWM1A_GPIO GPIOD
-#define PWM1A_BIT  BIT5
-#define PWM1B_GPIO GPIOD
-#define PWM1B_BIT  BIT4
+#define PWM1A_GPIO		GPIOD
+#define PWM1A_BIT		BIT5
+
+#define PWM1B_GPIO		GPIOD
+#define PWM1B_BIT		BIT4
 
 #define	PWM_PRESCALER_NO	(0)
 #define	PWM_PRESCALER_8		(1)
@@ -41,6 +46,18 @@
 #define	PWM_PRESCALER_128	(4)
 #define	PWM_PRESCALER_256	(5)
 #define	PWM_PRESCALER_1024	(6)
+
+ /* inverting and non inverting mode */
+ 
+#define		COM1A0		0X40
+#define		COM1A1		0X80
+#define		COM1B0		0X10
+#define		COM1B1		0X20
+
+/* for mode 8 */
+
+#define		WGM13		0X10
+
 
 typedef struct Pwm_Cfg_s
 {

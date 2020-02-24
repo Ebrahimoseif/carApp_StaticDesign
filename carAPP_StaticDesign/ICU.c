@@ -66,7 +66,7 @@ ERROR_STATUS Icu_Init(Icu_cfg_s * Icu_Cfg){
 		{
 			u8_status = E_NOK;
 		}
-		
+		else{
         Timer_cfg_s str_Timer_cfg = {
         	Icu_Cfg->ICU_Ch_Timer,
         	TIMER_MODE,
@@ -87,7 +87,7 @@ ERROR_STATUS Icu_Init(Icu_cfg_s * Icu_Cfg){
 			u8_status = EXT_INT_SetEdge(EXT_INT2_RISING_EDGE);
 			
 //			set_callback(extInt_CBK_Func);
-
+	}
 	return u8_status;
 }
 
@@ -136,6 +136,7 @@ ERROR_STATUS Icu_ReadTime(uint8_t Icu_Channel,
 						case ICU_RISE_TO_FALL:
 						
 								*Icu_Time = gu16_RiseToFall *TICK_TIME ;
+
 						break;
 						case ICU_FALE_TO_RISE:
 						
@@ -190,6 +191,9 @@ ISR(INT2_vect)
 	            	
 	            	//MCUCSR |= 0x40;
 	            	edgeDetect = EXT_INT2_RISING_EDGE;
+					
+					/*PORTC_DIR = 0xff;
+					PORTC_DATA = gu16_RiseToFall;*/
 	            
 				break;
 	            	

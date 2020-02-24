@@ -5,76 +5,75 @@
  * Author : EbrahimOseif
  */ 
 
-#define F_CPU 16000000UL
 #include <util/delay.h>
-#include "Timer.h"
-#include "DIO.h"
-#include "PWM.h"
-#include "ICU.h"
+
 
 #include "car_sm.h"
-
-
-extern struct DIO_Cfg_s dio;
-extern struct DIO_Cfg_s pwm_io;
-extern struct Pwm_Cfg_s pwm_cfg;
 
 
 
 int main(void)
 {
 	 
+	  /* initialize the car states */
+	  
 	 Car_SM_Init();
-	 
-	 while(1){
-		 
-		 Car_SM_Update();
-	 }
+	  /* loop and read distance and take action based on it */
+	  
+	 Car_SM_Update();
 	 
 	 
-/*
+	 
+	 
+
+		/*
 		STEERING TEST 
 		
 		Steering_Init();
 		while (1)
 		{
-Steering_SteerCar(CAR_FORWARD, 20);
-_delay_ms(1000);
-Steering_SteerCar(CAR_STOP, 20);
+      Steering_SteerCar(CAR_FORWARD, 20);
+      _delay_ms(1000);
+      Steering_SteerCar(CAR_STOP, 20);
+      
+      Steering_SteerCar(CAR_BACKWARD, 20);
+      _delay_ms(1000);	
+      Steering_SteerCar(CAR_STOP, 20);
+       	
+      Steering_SteerCar(CAR_LEFT, 20);
+      
+      _delay_ms(1000);
+      Steering_SteerCar(CAR_RIGHT, 20);
+      _delay_ms(1000);
+      Steering_SteerCar(CAR_STOP, 20);
+      
+}
+		
+		
+		*/
+		
+	/*pwm test 
+		Pwm_Cfg_s pwm_cfg={
+			PWM_CH1B,
+			PWM_PRESCALER_8
+		};
 
-Steering_SteerCar(CAR_BACKWARD, 20);
-_delay_ms(1000);	
-Steering_SteerCar(CAR_STOP, 20);
- 	
-Steering_SteerCar(CAR_LEFT, 20);
-
-_delay_ms(1000);
-Steering_SteerCar(CAR_RIGHT, 20);
-_delay_ms(1000);
-Steering_SteerCar(CAR_STOP, 20);
-
-}*/
-		
-		
-		
-		
-	/* pwm test 
 	Pwm_Init(&pwm_cfg);
 	pwm_cfg.Channel = PWM_CH1A;
 		Pwm_Init(&pwm_cfg);
 
 	while(1){
 		
-		Pwm_Start(PWM_CH1B, 70 ,50);
+		Pwm_Start(PWM_CH1B, 50, 200);
 		_delay_ms(1000);
-		Pwm_Start(PWM_CH1A, 50 ,50);
+		Pwm_Start(PWM_CH1A, 70 ,200);
 			_delay_ms(1000);
 	}
+	
 	*/
+	
 
-	/*
-
-	dio test	
+	/* dio test	
 	 struct DIO_Cfg_s dio={
 		 GPIOB, BIT4| BIT3, INPUT
 		 };
@@ -102,8 +101,8 @@ Steering_SteerCar(CAR_STOP, 20);
 						DIO_Write(GPIOB, BIT7,HIGH);
 
 		}
-	}*/
-	
+	}
+	*/
 	
 	
 }

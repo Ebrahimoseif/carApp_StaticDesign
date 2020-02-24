@@ -13,9 +13,6 @@
 #include "EXT_Interrupts.h"
 
 
-static void (*ExtInt_CBK_Ptr[INT_CHANNELS_NUMBER])(void) = {NULL};
-
-
 /************************************************************************/
 /*		         TIMER FUNCTIONS' implementation	                    */
 /************************************************************************/
@@ -169,7 +166,7 @@ ERROR_STATUS EXT_INT_Disable(uint8_t EXT_INT_CH){
  */	
 ERROR_STATUS EXT_INT_isTriggered(uint8_t EXT_INT_CH, uint8_t* state){
 
-	ERROR_STATUS status = E_OK;
+	ERROR_STATUS u8_status = E_OK;
 
 	switch(EXT_INT_CH){
 		
@@ -186,17 +183,12 @@ ERROR_STATUS EXT_INT_isTriggered(uint8_t EXT_INT_CH, uint8_t* state){
 		break;
 		
 		default:
-				status = E_NOK;
+				u8_status = E_NOK;
 	}
-	return status;
+	return u8_status;
 }
 
 /* callback implementation */ 
-
-void set_callback(void ptrToFunction(void)){
-	
-		ExtInt_CBK_Ptr[EXT_INT2] = ptrToFunction;
-}
 
 
 /************************************************************************/
@@ -204,13 +196,4 @@ void set_callback(void ptrToFunction(void)){
 /************************************************************************/
 
 
-ISR(INT0_vect)
-{
-	ExtInt_CBK_Ptr[EXT_INT0]();
-}
-
-ISR(INT1_vect)
-{
-	ExtInt_CBK_Ptr[EXT_INT1]();
-}
 

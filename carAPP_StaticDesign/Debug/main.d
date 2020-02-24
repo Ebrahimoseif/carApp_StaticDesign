@@ -5,9 +5,9 @@ main.d main.o: .././main.c \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\stdint.h \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\util\delay_basic.h \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\math.h \
- .././Timer.h .././std_types.h .././registers.h .././DIO.h .././PWM.h \
- .././ICU.h .././EXT_Interrupts.h .././interrupt.h .././car_sm.h \
- .././steering.h .././motor.h .././us.h .././softwareDelay.h \
+ .././car_sm.h .././std_types.h .././steering.h .././motor.h .././DIO.h \
+ .././registers.h .././PWM.h .././Timer.h .././us.h .././ICU.h \
+ .././EXT_Interrupts.h .././interrupt.h .././softwareDelay.h \
  .././char_lcd.h
 
 c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\util\delay.h:
@@ -22,29 +22,29 @@ c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\
 
 c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\math.h:
 
-.././Timer.h:
+.././car_sm.h:
 
 .././std_types.h:
 
-.././registers.h:
+.././steering.h:
+
+.././motor.h:
 
 .././DIO.h:
 
+.././registers.h:
+
 .././PWM.h:
+
+.././Timer.h:
+
+.././us.h:
 
 .././ICU.h:
 
 .././EXT_Interrupts.h:
 
 .././interrupt.h:
-
-.././car_sm.h:
-
-.././steering.h:
-
-.././motor.h:
-
-.././us.h:
 
 .././softwareDelay.h:
 

@@ -1,0 +1,23 @@
+
+
+1- Never procceed without unit testing 
+
+		CHECK EVERY SINGLE FUNCTION IN EVERY SINGLE MODULE
+		test individual on simulation 
+		test individual on Hw
+
+		integrate with consumer layer on simulation
+		integrate with consumer layer on HW
+
+	NOW YOU CAN PROCCEED
+
+2- USE ERROR AND CHECK THE NEGATIVE TESTING FROM THE FIRST 
+
+3- USE CODE GUIDLINES FROM THE FIRST 
+
+4- NO GHOSTS UNLESS YOU BRING THEM
+
+
+
+
+		

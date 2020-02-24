@@ -23,11 +23,11 @@
 
 
 
-#define Stop	0
-#define Move	1
-#define Right	2
-#define Left	3
-#define Back	4
+#define		Stop	0
+#define		Move	1
+#define		Right	2
+#define		Left	3
+#define		Back	4
 
 /*************************************************************/
 /*                     FUNCTIONS DECLARATION                 */

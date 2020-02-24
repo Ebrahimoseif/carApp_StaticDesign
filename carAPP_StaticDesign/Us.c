@@ -11,6 +11,7 @@
 
 
 #include "Us.h"
+#include "util/delay.h"
 
 
 /************************************************************************/
@@ -32,15 +33,15 @@
 
 ERROR_STATUS Us_Init(void)
 {
-	ERROR_STATUS status = E_OK;
+	ERROR_STATUS u8_status = E_OK;
 	
-	/* initialize pin3 as output */
+	/* initialize pin3 TRIGGER  as output */
 	DIO_Cfg_s str_Dio = {
 		GPIOB,
 		PIN3,
 		OUTPUT
 	};
-	status = 	DIO_init(&str_Dio);
+	u8_status = 	DIO_init(&str_Dio);
 	
 
 	/* initialize icu on EXT INT2 and timer0 */
@@ -48,9 +49,9 @@ ERROR_STATUS Us_Init(void)
 	ICU_CH2,
 	ICU_TIMER_CH0
 	};
-	status = Icu_Init(&str_Icu);
+	u8_status = Icu_Init(&str_Icu);
 	
-	return status;
+	return u8_status;
 }
 
 
@@ -72,9 +73,15 @@ ERROR_STATUS Us_Trigger(void)
 {
 	ERROR_STATUS status = E_OK;
 	/* Trigger pulse */
+	
 	status =  DIO_Write(GPIOB, PIN3, HIGH);
-	softwareDelayMs(1);
+		_delay_ms(1);
 	status =  DIO_Write(GPIOB, PIN3, LOW);
+	
+	/*PORTB_DATA |= (1<<3);
+	_delay_ms(1);
+	PORTB_DATA &= ~(1<<3);
+	*/
 	return status;
 }
 
@@ -97,11 +104,13 @@ ERROR_STATUS Us_Trigger(void)
 ERROR_STATUS Us_GetDistance(uint8_t *Distance)
 {
 	ERROR_STATUS u8_status = E_OK;
-	u8_status =  Icu_ReadTime(ICU_TIMER_CH0, ICU_RISE_TO_FALL , Distance);
+	uint16_t timecount;
+	u8_status =  Icu_ReadTime(ICU_TIMER_CH0, ICU_RISE_TO_FALL , &timecount);
 		
 		
 		/*58 to map time to distance */
-		*Distance = *Distance / 58;
+		*Distance = timecount / 58;
+		
 	//PORTD_DATA = *Distance;
 	
 	return u8_status;

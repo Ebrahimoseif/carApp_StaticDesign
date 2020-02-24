@@ -11,7 +11,6 @@
 
 #include <stdlib.h>
 #include "car_sm.h"
-#include "DIO.h"
 
 
 
@@ -39,13 +38,13 @@ static uint8_t gu8_Distance = 0, gu8_Speed = 25;
 */
 ERROR_STATUS Car_SM_Init(void)
 {
-	ERROR_STATUS status = E_OK;
+	ERROR_STATUS u8_status = E_OK;
 	
 		/* initialize steering and Ultrasonic */
-		status = Steering_Init();
-		status = Us_Init();
+		u8_status = Steering_Init();
+		u8_status = Us_Init();
 	
-	return status;
+	return u8_status;
 }
 
 /*
@@ -63,26 +62,18 @@ ERROR_STATUS Car_SM_Init(void)
 
 ERROR_STATUS Car_SM_Update(void)
 {
-	ERROR_STATUS status = E_OK;
-	
-			DIO_Cfg_s fio={
-				GPIOC,
-				FULL_PORT,
-				OUTPUT
-			};
-			DIO_init(&fio);
-
+	ERROR_STATUS u8_status = E_OK;
 
 	while(1)
 	{
 		/* Read The Distance From The Ultrasonic Using swICU */
 		
-		Us_Trigger();
-		softwareDelayMs(1);
-		 
-		 Us_GetDistance(&gu8_Distance);
+		u8_status =  Us_Trigger();
 		
-		DIO_Write(GPIOC, FULL_PORT, gu8_Distance );
+		 softwareDelayMs(1);
+		
+	    u8_status = Us_GetDistance(&gu8_Distance);
+		
 		
 		/* Decide Which State To Move Our System Into */
 		
@@ -96,9 +87,9 @@ ERROR_STATUS Car_SM_Update(void)
 		gu8_State = Move;
 		
 		else
-		gu8_State = Stop;
+		gu8_State = Move;
 		
-		/* State-Machine Transitions */
+		/* switch on the state calculated by distance */
 		
 		switch(gu8_State)
 		{
@@ -124,7 +115,6 @@ ERROR_STATUS Car_SM_Update(void)
 		}
 		softwareDelayMs(30);
 	}
-	// Never Reaches!
 	
-	return status;
+	return u8_status;
 }

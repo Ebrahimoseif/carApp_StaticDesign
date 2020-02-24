@@ -22,7 +22,7 @@ uint16_t gu16_Prescaler;
   struct Pwm_Cfg_s pwm_cfg =
  {
 	 PWM_CH1B,
-	TIMER_PRESCALER_64
+	 PWM_PRESCALER_8
  };
  
 
@@ -47,36 +47,34 @@ uint16_t gu16_Prescaler;
 	 
 	 ERROR_STATUS u8_status = E_OK;
 	 
-	 if(Pwm_Cfg != NULL)
+	 if(Pwm_Cfg == NULL)
 	 {
 			u8_status = E_NOK;
 	 }
 	 else
-	 {
-		 	 TCCR1 = 0x0000;
+	 {		 
 		 	 // Set For inverting or non-inverting
-		 	 TCCR1 |= 0xA000;
+		 	 TCCR1A |= (COM1B1 | COM1A1);
 		 	 // Set the Mode
-		 	 TCCR1 |= 0x0010;
+		 	 TCCR1B |= (WGM13);
 		 	 // Stop The Timer
-		 	 TCCR1 |= TIMER_NO_CLOCK;
 		 	 // Set the Initial Values
 		 	 TCNT1 = 0x00;
 		 	 switch(Pwm_Cfg->Channel)
 		 	 {
 			 	 case PWM_CH1A:
-			 	 a_PWM1A.dir  = OUTPUT;
-			 	 a_PWM1A.GPIO = PWM1A_GPIO;
-			 	 a_PWM1A.pins = PWM1A_BIT;
-			 	 DIO_init(&a_PWM1A);
+			 	             a_PWM1A.dir  = OUTPUT;
+			 	             a_PWM1A.GPIO = PWM1A_GPIO;
+			 	             a_PWM1A.pins = PWM1A_BIT;
+			 	             DIO_init(&a_PWM1A);
 			 	 break;
 			 	 
 			 	 case PWM_CH1B:
 			 	 
-			 	 a_PWM1B.dir  = OUTPUT;
-			 	 a_PWM1B.GPIO = PWM1B_GPIO;
-			 	 a_PWM1B.pins = PWM1B_BIT;
-			 	 DIO_init(&a_PWM1B);
+			 	             a_PWM1B.dir  = OUTPUT;
+			 	             a_PWM1B.GPIO = PWM1B_GPIO;
+			 	             a_PWM1B.pins = PWM1B_BIT;
+			 	             DIO_init(&a_PWM1B);
 			 	 break;
 			 	 
 			 	 default:
@@ -134,7 +132,7 @@ uint16_t gu16_Prescaler;
 		 default:
 				u8_status = E_NOK;
 	 }
-	 TCCR1 |= TIMER_PRESCALER_8;
+	 TCCR1B |= TIMER_PRESCALER_8;
 	 
 	 return u8_status;
  }

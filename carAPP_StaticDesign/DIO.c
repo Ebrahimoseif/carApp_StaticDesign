@@ -150,7 +150,7 @@ ERROR_STATUS DIO_Write (uint8_t GPIO, uint8_t u8_pins, uint8_t u8_value){
 		               }
 		               else
 		               {
-			               PORTA_DATA |= (u8_pins & u8_value);
+			               PORTA_DATA |= (u8_pins /*& u8_value*/);
 		               }
 		               break;
 
@@ -162,7 +162,7 @@ ERROR_STATUS DIO_Write (uint8_t GPIO, uint8_t u8_pins, uint8_t u8_value){
 		               }
 		               else
 		               {
-			               PORTB_DATA |= (u8_pins & u8_value);
+			               PORTB_DATA |= (u8_pins /*& u8_value*/);
 		               }
 		               break;
 			  
@@ -174,7 +174,7 @@ ERROR_STATUS DIO_Write (uint8_t GPIO, uint8_t u8_pins, uint8_t u8_value){
 		               }
 		               else
 		               {
-			               PORTC_DATA |= (u8_pins & u8_value);
+			               PORTC_DATA |= (u8_pins /*& u8_value*/);
 		               }
 		               break;
 
@@ -186,13 +186,13 @@ ERROR_STATUS DIO_Write (uint8_t GPIO, uint8_t u8_pins, uint8_t u8_value){
 		               }
 		               else
 		               {
-			               PORTD_DATA |= (u8_pins & u8_value);
+			               PORTD_DATA |= (u8_pins /*& u8_value*/);
 		               }
 		               break;
 
 		      default:
 					u8_status = E_NOK;
-	  }
+	      }
 	  
 	 } /* end of else */
 	return u8_status;	

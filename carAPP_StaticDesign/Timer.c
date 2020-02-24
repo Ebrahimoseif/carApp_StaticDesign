@@ -63,11 +63,11 @@ ERROR_STATUS Timer_Init(Timer_cfg_s* Timer_cfg)
 	}else 
 	{
 		/* start the initialization process */ 
-		 if (Timer_cfg->Timer_CH_NO > TIMER_CHANNEL_NUMBER)
+		/* if (Timer_cfg->Timer_CH_NO > TIMER_CHANNEL_NUMBER)
 		 {
 			 u8_status = E_NOK;
 		 }else
-		 { 
+		 { */
 		switch(Timer_cfg->Timer_CH_NO){
 			
 			case TIMER_CH0:
@@ -186,7 +186,7 @@ ERROR_STATUS Timer_Init(Timer_cfg_s* Timer_cfg)
 				default:
 						u8_status = E_NOK;
 				} /*end of switch */
-	     	} /* end of else */
+	     	//} /* end of else */
 	} /* end of outer else */ 
 	return u8_status;
 }
@@ -208,12 +208,12 @@ ERROR_STATUS Timer_Start(uint8_t Timer_CH_NO, uint16_t Timer_Count){
 	
 	ERROR_STATUS u8_status = E_OK;
 	
-		if (Timer_CH_NO > TIMER_CHANNEL_NUMBER)
+	/*	if (Timer_CH_NO > TIMER_CHANNEL_NUMBER)
 		{
 			u8_status = E_NOK;
 		}else
 		{
-			
+			*/
 	switch(Timer_CH_NO){
 		
 		case TIMER_CH0:
@@ -356,7 +356,7 @@ ERROR_STATUS Timer_Start(uint8_t Timer_CH_NO, uint16_t Timer_Count){
 		default:
 			u8_status = E_NOK;
 	} /* end of channel switch */
-   }/*end of outer else */	
+  // }/*end of outer else */	
  return u8_status;
 }
 
@@ -374,11 +374,11 @@ ERROR_STATUS Timer_Stop(uint8_t Timer_CH_NO){
 	
 	ERROR_STATUS u8_status = E_OK;
 	
-	if (Timer_CH_NO > TIMER_CHANNEL_NUMBER)
+	/*if (Timer_CH_NO > TIMER_CHANNEL_NUMBER)
 	{
 		u8_status = E_NOK;
 	}
-	else{
+	else{*/
 		switch(Timer_CH_NO){
 			
 			case TIMER_CH0:
@@ -429,7 +429,7 @@ ERROR_STATUS Timer_Stop(uint8_t Timer_CH_NO){
 			default:
 					u8_status = E_NOK;
 			} /* end of channel switch */
-		}
+		//}
 		return u8_status;
 	}
 

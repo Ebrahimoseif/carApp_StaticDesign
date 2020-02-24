@@ -62,25 +62,35 @@ ERROR_STATUS Steering_SteerCar(uint8_t Steering_direction,
 							
 					case CAR_FORWARD:
 							Motor_Direction(MOTOR_1,MOTOR_FORWARD);
+							Motor_Start(MOTOR_1, 20);
 							Motor_Direction(MOTOR_2,MOTOR_FORWARD);
+							Motor_Start(MOTOR_2, 20);
+
 							
 							break;
 							
 					case CAR_BACKWARD:
 							Motor_Direction(MOTOR_1,MOTOR_BACKWARD);
+							Motor_Start(MOTOR_1, 20);
 							Motor_Direction(MOTOR_2,MOTOR_BACKWARD);
+							Motor_Start(MOTOR_2, 20);
+
 							
 							break;
 					
 				    case CAR_RIGHT:
 							Motor_Direction(MOTOR_1,MOTOR_BACKWARD);
+							Motor_Start(MOTOR_1, 20);
 							Motor_Direction(MOTOR_2,MOTOR_FORWARD);
+							Motor_Start(MOTOR_2, 20);
 							
 	     					break;
 
 					case CAR_LEFT:
 							Motor_Direction(MOTOR_1,MOTOR_FORWARD);
+							Motor_Start(MOTOR_1, 20);
 							Motor_Direction(MOTOR_2,MOTOR_BACKWARD);
+							Motor_Start(MOTOR_2, 20);
 								
 							break;
 							
